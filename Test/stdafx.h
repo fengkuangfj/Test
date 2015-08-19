@@ -13,3 +13,16 @@
 // TODO: 在此处引用程序需要的其他头文件
 #include <Windows.h>
 #include <conio.h>
+
+#include "../../Public/CommandLine/CommandLine.h"
+#include "../../Public/ModulePath/ModulePath.h"
+#include "../../Public/OperationSystemVersion/OperationSystemVersion.h"
+#include "../../Public/PrintfEx/PrintfEx.h"
+#include "../../Public/ProcessPath/ProcessPath.h"
+#include "../../Public/ShortCut/ShortCut.h"
+#include "../../Public/SimpleDump/SimpleDump.h"
+#include "../../Public/StackBacktrace/StackBacktrace.h"
+#include "../../Public/StorageDeviceBusType/StorageDeviceBusType.h"
+#include "../../Public/SimpleLog/SimpleLog.h"
+#include "../../Public/Uac/Uac.h"
+#include "../../Public/Service/Service.h"

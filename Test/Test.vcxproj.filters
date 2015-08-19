@@ -24,7 +24,40 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Public\ProcessPath\ProcessPath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ModulePath\ModulePath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\OperationSystemVersion\OperationSystemVersion.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Public\PrintfEx\PrintfEx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ShortCut\Shortcut.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\SimpleDump\SimpleDump.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\StackBacktrace\StackBacktrace.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\StorageDeviceBusType\StorageDeviceBusType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\CommandLine\CommandLine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\SimpleLog\SimpleLog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\Uac\Uac.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\Service\Service.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +68,40 @@
     <ClCompile Include="Test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Public\ProcessPath\ProcessPath.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ModulePath\ModulePath.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\OperationSystemVersion\OperationSystemVersion.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Public\PrintfEx\PrintfEx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ShortCut\Shortcut.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\SimpleDump\SimpleDump.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\StackBacktrace\StackBacktrace.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\StorageDeviceBusType\StorageDeviceBusType.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\CommandLine\CommandLine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\SimpleLog\SimpleLog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\Uac\Uac.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\Service\Service.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
