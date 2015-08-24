@@ -26,3 +26,4 @@
 #include "..\\..\\Public\\SimpleLog\\SimpleLog.h"
 #include "..\\..\\Public\\Uac\\Uac.h"
 #include "..\\..\\Public\\Service\\Service.h"
+#include "..\\..\\Public\\ProcessPrivilege\\ProcessPrivilege.h"

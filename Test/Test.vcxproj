@@ -83,6 +83,7 @@
     <ClInclude Include="..\..\Public\OperationSystemVersion\OperationSystemVersion.h" />
     <ClInclude Include="..\..\Public\PrintfEx\PrintfEx.h" />
     <ClInclude Include="..\..\Public\ProcessPath\ProcessPath.h" />
+    <ClInclude Include="..\..\Public\ProcessPrivilege\ProcessPrivilege.h" />
     <ClInclude Include="..\..\Public\Service\Service.h" />
     <ClInclude Include="..\..\Public\ShortCut\Shortcut.h" />
     <ClInclude Include="..\..\Public\SimpleDump\SimpleDump.h" />
@@ -113,6 +114,9 @@
     <ClCompile Include="..\..\Public\ProcessPath\ProcessPath.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ProcessPrivilege\ProcessPrivilege.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\Public\Service\Service.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
