@@ -27,3 +27,4 @@
 #include "..\\..\\Public\\Uac\\Uac.h"
 #include "..\\..\\Public\\Service\\Service.h"
 #include "..\\..\\Public\\ProcessPrivilege\\ProcessPrivilege.h"
+#include "..\\..\\Public\\CrashDump\\CrashDump.h"

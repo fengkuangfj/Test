@@ -63,6 +63,9 @@
     <ClInclude Include="..\..\Public\ProcessPrivilege\ProcessPrivilege.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Public\CrashDump\CrashDump.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -108,6 +111,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Public\ProcessPrivilege\ProcessPrivilege.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\CrashDump\CrashDump.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Public\CommandLine\CommandLine.h" />
+    <ClInclude Include="..\..\Public\CrashDump\CrashDump.h" />
     <ClInclude Include="..\..\Public\ModulePath\ModulePath.h" />
     <ClInclude Include="..\..\Public\OperationSystemVersion\OperationSystemVersion.h" />
     <ClInclude Include="..\..\Public\PrintfEx\PrintfEx.h" />
@@ -96,6 +97,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Public\CommandLine\CommandLine.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\CrashDump\CrashDump.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
