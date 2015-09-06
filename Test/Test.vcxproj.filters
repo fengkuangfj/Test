@@ -66,6 +66,9 @@
     <ClInclude Include="..\..\Public\CrashDump\CrashDump.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="D:\Code_GIT\SISS\kernel\Disk\EnDiskComm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

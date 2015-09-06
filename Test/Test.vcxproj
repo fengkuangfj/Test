@@ -92,6 +92,7 @@
     <ClInclude Include="..\..\Public\StackBacktrace\StackBacktrace.h" />
     <ClInclude Include="..\..\Public\StorageDeviceBusType\StorageDeviceBusType.h" />
     <ClInclude Include="..\..\Public\Uac\Uac.h" />
+    <ClInclude Include="D:\Code_GIT\SISS\kernel\Disk\EnDiskComm.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
