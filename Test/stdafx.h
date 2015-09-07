@@ -28,4 +28,4 @@
 #include "..\\..\\Public\\Service\\Service.h"
 #include "..\\..\\Public\\ProcessPrivilege\\ProcessPrivilege.h"
 #include "..\\..\\Public\\CrashDump\\CrashDump.h"
-#include "D:\\Code_GIT\\SISS\\kernel\\Disk\\EnDiskComm.h"
+#include "..\\..\\Public\\DeviceMonitor\\\DeviceMonitor.h"

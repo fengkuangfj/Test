@@ -66,7 +66,7 @@
     <ClInclude Include="..\..\Public\CrashDump\CrashDump.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Code_GIT\SISS\kernel\Disk\EnDiskComm.h">
+    <ClInclude Include="..\..\Public\DeviceMonitor\DeviceMonitor.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -117,6 +117,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Public\CrashDump\CrashDump.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\DeviceMonitor\DeviceMonitor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
