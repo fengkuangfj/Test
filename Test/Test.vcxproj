@@ -80,7 +80,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Public\CommandLine\CommandLine.h" />
     <ClInclude Include="..\..\Public\CrashDump\CrashDump.h" />
-    <ClInclude Include="..\..\Public\DeviceMonitor\DeviceMonitor.h" />
     <ClInclude Include="..\..\Public\ModulePath\ModulePath.h" />
     <ClInclude Include="..\..\Public\OperationSystemVersion\OperationSystemVersion.h" />
     <ClInclude Include="..\..\Public\PrintfEx\PrintfEx.h" />
@@ -93,6 +92,7 @@
     <ClInclude Include="..\..\Public\StackBacktrace\StackBacktrace.h" />
     <ClInclude Include="..\..\Public\StorageDeviceBusType\StorageDeviceBusType.h" />
     <ClInclude Include="..\..\Public\Uac\Uac.h" />
+    <ClInclude Include="..\..\Public\VolumeDetector\VolumeDetector.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -104,9 +104,6 @@
     <ClCompile Include="..\..\Public\CrashDump\CrashDump.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\Public\DeviceMonitor\DeviceMonitor.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\Public\ModulePath\ModulePath.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -153,6 +150,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\Public\Uac\Uac.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\VolumeDetector\VolumeDetector.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>

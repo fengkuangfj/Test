@@ -12,7 +12,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	CPrintfEx		PrintfEx;
 
-	CDeviceMonitor	DeviceMonitor;
+	CVolumeDetector	VolumeDetector;
 
 
 	__try
@@ -31,13 +31,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续\n");
 		_getch();
 
-		if (!DeviceMonitor.Init())
+		if (!VolumeDetector.Init(NULL, NULL, FALSE))
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "Init failed");
 			__leave;
 		}
 
-		if (!DeviceMonitor.MessageLoop())
+		if (!VolumeDetector.MessageLoop())
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "MessageLoop failed");
 			__leave;
@@ -48,6 +48,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
+		VolumeDetector.Unload();
 	}
 	__finally
 	{

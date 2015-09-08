@@ -28,4 +28,4 @@
 #include "..\\..\\Public\\Service\\Service.h"
 #include "..\\..\\Public\\ProcessPrivilege\\ProcessPrivilege.h"
 #include "..\\..\\Public\\CrashDump\\CrashDump.h"
-#include "..\\..\\Public\\DeviceMonitor\\\DeviceMonitor.h"
+#include "..\\..\\Public\\VolumeDetector\\\VolumeDetector.h"
