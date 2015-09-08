@@ -24,24 +24,12 @@ int _tmain(int argc, _TCHAR* argv[])
 			{
 				*(lpPosition) = _T('\0');
 
-				PrintfEx.Init(tchPdbDir);
+				PrintfEx.Init(tchPdbDir, TRUE);
 			}
 		}
 
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续\n");
 		_getch();
-
-// 		if (!VolumeDetector.Init(NULL, NULL, FALSE))
-// 		{
-// 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Init failed");
-// 			__leave;
-// 		}
-// 
-// 		if (!VolumeDetector.MessageLoop())
-// 		{
-// 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.MessageLoop failed");
-// 			__leave;
-// 		}
 
 		if (!Service.Register(_T("test")))
 		{
@@ -49,11 +37,23 @@ int _tmain(int argc, _TCHAR* argv[])
 			__leave;
 		}
 
-// 		if (!VolumeDetector.Unload())
-// 		{
-// 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Unload failed");
-// 			__leave;
-// 		}
+		if (!VolumeDetector.Init(NULL, NULL, FALSE))
+		{
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Init failed");
+			__leave;
+		}
+
+		if (!VolumeDetector.MessageLoop())
+		{
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.MessageLoop failed");
+			__leave;
+		}
+		
+		if (!VolumeDetector.Unload())
+		{
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Unload failed");
+			__leave;
+		}
 	}
 	__finally
 	{
