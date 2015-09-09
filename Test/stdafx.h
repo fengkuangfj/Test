@@ -29,3 +29,4 @@
 #include "..\\..\\Public\\ProcessPrivilege\\ProcessPrivilege.h"
 #include "..\\..\\Public\\CrashDump\\CrashDump.h"
 #include "..\\..\\Public\\VolumeDetector\\\VolumeDetector.h"
+#include "Test.h"

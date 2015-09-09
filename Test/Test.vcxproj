@@ -95,6 +95,7 @@
     <ClInclude Include="..\..\Public\VolumeDetector\VolumeDetector.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Test.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Public\CommandLine\CommandLine.cpp">
