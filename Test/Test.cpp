@@ -5,7 +5,7 @@
 
 BOOL
 	InitMod(
-	__in LPINIT_MOD_ARGUMENTS lpInitModArguments
+	__in_opt LPINIT_MOD_ARGUMENTS lpInitModArguments
 	)
 {
 	BOOL							bRet						= FALSE;
@@ -29,23 +29,20 @@ BOOL
 			{
 				*(lpPosition) = _T('\0');
 
-				PrintfEx.Init(tchPdbDir, TRUE);
+				if (!PrintfEx.Init(tchPdbDir, TRUE))
+					printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
 			}
 		}
 
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续\n");
+		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续");
 		_getch();
 
-		_tcscat_s(VolumeDetectorInitArguments.tchModuleName, _countof(VolumeDetectorInitArguments.tchModuleName), lpInitModArguments->tchModuleName);
-
-		VolumeDetectorInitArguments.bService = lpInitModArguments->bService;
-		if (VolumeDetectorInitArguments.bService)
-			VolumeDetectorInitArguments.Service.hService = lpInitModArguments->Service.hService;
-		else
+		if (lpInitModArguments)
 		{
-			VolumeDetectorInitArguments.Window.hWindow = lpInitModArguments->Window.hWindow;
-			VolumeDetectorInitArguments.Window.lpfnWndProc = lpInitModArguments->Window.lpfnWndProc;
-			VolumeDetectorInitArguments.Window.bCreateMassageLoop = lpInitModArguments->Window.bCreateMassageLoop;
+			_tcscat_s(VolumeDetectorInitArguments.tchModuleName, _countof(VolumeDetectorInitArguments.tchModuleName), lpInitModArguments->tchModuleName);
+			VolumeDetectorInitArguments.hWindow = lpInitModArguments->hWindow;
+			VolumeDetectorInitArguments.lpfnWndProc = lpInitModArguments->lpfnWndProc;
+			VolumeDetectorInitArguments.bCreateMassageLoop = lpInitModArguments->bCreateMassageLoop;
 		}
 
 		if (!VolumeDetector.Init(&VolumeDetectorInitArguments))
@@ -67,7 +64,7 @@ BOOL
 BOOL
 	UnloadMod()
 {
-	BOOL			bRet			= FALSE;
+	BOOL			bRet			= TRUE;
 
 	CPrintfEx		PrintfEx;
 	CVolumeDetector	VolumeDetector;
@@ -78,14 +75,16 @@ BOOL
 		if (!VolumeDetector.Unload())
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Unload failed");
-			__leave;
+			bRet = FALSE;
 		}
 
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键退出");
 		_getch();
-		PrintfEx.Unload();
-
-		bRet = TRUE;
+		if (!PrintfEx.Unload())
+		{
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Unload failed");
+			bRet = FALSE;
+		}
 	}
 	__finally
 	{
@@ -98,32 +97,27 @@ BOOL
 BOOL
 	Test()
 {
-	BOOL							bRet						= FALSE;
+	BOOL				bRet				= TRUE;
 
-	VOLUME_DETECTOR_INIT_ARGUMENTS	VolumeDetectorInitArguments = {0};
-
-	CVolumeDetector					VolumeDetector;
+	INIT_MOD_ARGUMENTS	InitModArguments	= {0};
 
 
 	__try
 	{
-		VolumeDetectorInitArguments.Window.bCreateMassageLoop = TRUE;
-
-		if (!VolumeDetector.Init(&VolumeDetectorInitArguments))
+		InitModArguments.bCreateMassageLoop = TRUE;
+		if (!InitMod(&InitModArguments))
 		{
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Init failed");
-			__leave;
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "InitMod failed");
+			bRet = FALSE;
 		}
 
 		_getch();
 
-		if (!VolumeDetector.Unload())
+		if (!UnloadMod())
 		{
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Unload failed");
-			__leave;
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "UnloadMod failed");
+			bRet = FALSE;
 		}
-
-		bRet = TRUE;
 	}
 	__finally
 	{
@@ -135,15 +129,16 @@ BOOL
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	/*
-	CService Service;
+	// 服务
+	CService			Service;
+
+	INIT_MOD_ARGUMENTS	InitModArguments = {0};
 
 
 	__try
 	{
-		Sleep(10000);
-
-		if (!Service.Register(_T("test"), InitMod, UnloadMod))
+		InitModArguments.bCreateMassageLoop = TRUE;
+		if (!Service.Register(_T("test"), InitMod, &InitModArguments, UnloadMod))
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "Service.Register failed");
 			__leave;
@@ -155,8 +150,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
+
+	/*
+	// 非服务
+	Test();
+	return 0;
 	*/
 
+	/*
+	// 模板
 	TCHAR			tchPdbDir[MAX_PATH] = {0};
 	LPTSTR			lpPosition			= NULL;
 
@@ -174,14 +176,15 @@ int _tmain(int argc, _TCHAR* argv[])
 			{
 				*(lpPosition) = _T('\0');
 
-				PrintfEx.Init(tchPdbDir, TRUE);
+				if (!PrintfEx.Init(tchPdbDir, TRUE))
+					printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
 			}
 		}
 
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续\n");
+		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续");
 		_getch();
 
-		Test();
+
 
 
 
@@ -197,4 +200,5 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
+	*/
 }
