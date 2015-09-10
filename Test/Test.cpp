@@ -5,18 +5,17 @@
 
 BOOL
 	InitMod(
-	__in BOOL bService,
-	__in BOOL bCreateMassageLoop,
-	__in BOOL bCreateMassageLoopThread
+	__in LPINIT_MOD_ARGUMENTS lpInitModArguments
 	)
 {
-	BOOL			bRet			= FALSE;
+	BOOL							bRet						= FALSE;
 
-	TCHAR			tchPdbDir[MAX_PATH] = {0};
-	LPTSTR			lpPosition			= NULL;
+	TCHAR							tchPdbDir[MAX_PATH]			= {0};
+	LPTSTR							lpPosition					= NULL;
+	VOLUME_DETECTOR_INIT_ARGUMENTS	VolumeDetectorInitArguments = {0};
 
-	CPrintfEx		PrintfEx;
-	CVolumeDetector	VolumeDetector;
+	CPrintfEx						PrintfEx;
+	CVolumeDetector					VolumeDetector;
 
 
 	__try
@@ -37,7 +36,19 @@ BOOL
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续\n");
 		_getch();
 
-		if (!VolumeDetector.Init(NULL, bService ? CService::ms_SvcStatusHandle : NULL, bService, bCreateMassageLoop, bCreateMassageLoopThread))
+		_tcscat_s(VolumeDetectorInitArguments.tchModuleName, _countof(VolumeDetectorInitArguments.tchModuleName), lpInitModArguments->tchModuleName);
+
+		VolumeDetectorInitArguments.bService = lpInitModArguments->bService;
+		if (VolumeDetectorInitArguments.bService)
+			VolumeDetectorInitArguments.Service.hService = lpInitModArguments->Service.hService;
+		else
+		{
+			VolumeDetectorInitArguments.Window.hWindow = lpInitModArguments->Window.hWindow;
+			VolumeDetectorInitArguments.Window.lpfnWndProc = lpInitModArguments->Window.lpfnWndProc;
+			VolumeDetectorInitArguments.Window.bCreateMassageLoop = lpInitModArguments->Window.bCreateMassageLoop;
+		}
+
+		if (!VolumeDetector.Init(&VolumeDetectorInitArguments))
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Init failed");
 			__leave;
@@ -87,24 +98,24 @@ BOOL
 BOOL
 	Test()
 {
-	BOOL			bRet			= FALSE;
+	BOOL							bRet						= FALSE;
 
-	CVolumeDetector	VolumeDetector;
+	VOLUME_DETECTOR_INIT_ARGUMENTS	VolumeDetectorInitArguments = {0};
+
+	CVolumeDetector					VolumeDetector;
 
 
 	__try
 	{
-		if (!VolumeDetector.Init(NULL, NULL, FALSE, TRUE, FALSE))
+		VolumeDetectorInitArguments.Window.bCreateMassageLoop = TRUE;
+
+		if (!VolumeDetector.Init(&VolumeDetectorInitArguments))
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Init failed");
 			__leave;
 		}
 
-		if (!VolumeDetector.MessageLoop(TRUE))
-		{
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.MessageLoop failed");
-			__leave;
-		}
+		_getch();
 
 		if (!VolumeDetector.Unload())
 		{
@@ -124,6 +135,7 @@ BOOL
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	/*
 	CService Service;
 
 
@@ -143,9 +155,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
+	*/
 
-
-	/*
 	TCHAR			tchPdbDir[MAX_PATH] = {0};
 	LPTSTR			lpPosition			= NULL;
 
@@ -186,5 +197,4 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
-	*/
 }
