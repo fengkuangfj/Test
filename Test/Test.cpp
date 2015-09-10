@@ -194,7 +194,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键退出");
 		_getch();
-		PrintfEx.Unload();
+		if (!PrintfEx.Unload())
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Unload failed");
 
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "end");
 	}
