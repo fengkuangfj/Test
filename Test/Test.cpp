@@ -17,11 +17,10 @@ BOOL
 	CPrintfEx						PrintfEx;
 	CVolumeDetector					VolumeDetector;
 
+	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "begin");
 
 	__try
 	{
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "begin");
-
 		if (GetModuleFileName(NULL, tchPdbDir, _countof(tchPdbDir)))
 		{
 			lpPosition = _tcsrchr(tchPdbDir, _T('\\'));
@@ -55,8 +54,10 @@ BOOL
 	}
 	__finally
 	{
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "end");
+		;
 	}
+
+	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "end");
 
 	return bRet;
 }
@@ -164,11 +165,10 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	CPrintfEx		PrintfEx;
 
+	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "begin");
 
 	__try
 	{
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "begin");
-
 		if (GetModuleFileName(NULL, tchPdbDir, _countof(tchPdbDir)))
 		{
 			lpPosition = _tcsrchr(tchPdbDir, _T('\\'));
@@ -196,9 +196,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		_getch();
 		if (!PrintfEx.Unload())
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Unload failed");
-
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "end");
 	}
+
+	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "end");
 
 	return 0;
 	*/
