@@ -45,9 +45,6 @@
     <ClInclude Include="..\..\Public\StackBacktrace\StackBacktrace.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Public\StorageDeviceBusType\StorageDeviceBusType.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Public\CommandLine\CommandLine.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -70,6 +67,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Test.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\Wmi\Wmi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\StringInternal\StringInternal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\StorageDevice\StorageDevice.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,9 +107,6 @@
     <ClCompile Include="..\..\Public\StackBacktrace\StackBacktrace.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Public\StorageDeviceBusType\StorageDeviceBusType.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Public\CommandLine\CommandLine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -123,6 +126,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Public\VolumeDetector\VolumeDetector.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\Wmi\Wmi.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\StringInternal\StringInternal.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\StorageDevice\StorageDevice.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
