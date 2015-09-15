@@ -154,12 +154,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 	*/
 
-	/*
 	// 非服务
 	Test();
 	return 0;
-	*/
 
+	/*
 	// 模板
 	TCHAR			tchPdbDir[MAX_PATH] = {0};
 	LPTSTR			lpPosition			= NULL;
@@ -185,12 +184,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续");
 		_getch();
 
-		// 通过wmi获取硬盘caption
-		// CWmi::Query();
-
-		// 通过盘符获取硬盘号
-		// CStorageDevice::GetVolumePhysicalLlocation(_T("c:"));
-
 
 
 
@@ -208,4 +201,5 @@ int _tmain(int argc, _TCHAR* argv[])
 	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "end");
 
 	return 0;
+	*/
 }
