@@ -130,7 +130,6 @@ BOOL
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	/*
 	// 服务
 	CService			Service;
 
@@ -152,11 +151,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
-	*/
 
+	/*
 	// 非服务
 	Test();
 	return 0;
+	*/
 
 	/*
 	// 模板
