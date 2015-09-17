@@ -11,9 +11,6 @@
 #include <tchar.h>
 
 // TODO: 在此处引用程序需要的其他头文件
-#include <Windows.h>
-#include <conio.h>
-
 #include "..\\..\\Public\\CommandLine\\CommandLine.h"
 #include "..\\..\\Public\\ModulePath\\ModulePath.h"
 #include "..\\..\\Public\\OperationSystemVersion\\OperationSystemVersion.h"
