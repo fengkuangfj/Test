@@ -21,15 +21,16 @@ BOOL
 
 	__try
 	{
+		if (!PrintfEx.Init())
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
+
 		if (GetModuleFileName(NULL, tchPdbDir, _countof(tchPdbDir)))
 		{
 			lpPosition = _tcsrchr(tchPdbDir, _T('\\'));
 			if (lpPosition)
 			{
 				*(lpPosition) = _T('\0');
-
-				if (!PrintfEx.Init(tchPdbDir, TRUE))
-					printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
+				// 
 			}
 		}
 
@@ -67,7 +68,6 @@ BOOL
 {
 	BOOL			bRet			= TRUE;
 
-	CPrintfEx		PrintfEx;
 	CVolumeDetector	VolumeDetector;
 
 
@@ -81,11 +81,6 @@ BOOL
 
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键退出");
 		_getch();
-		if (!PrintfEx.Unload())
-		{
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Unload failed");
-			bRet = FALSE;
-		}
 	}
 	__finally
 	{
