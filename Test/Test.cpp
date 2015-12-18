@@ -80,15 +80,12 @@ BOOL
 BOOL
 	Test()
 {
-	BOOL				bRet				= TRUE;
-
-	INIT_MOD_ARGUMENTS	InitModArguments	= {0};
+	BOOL bRet = TRUE;
 
 
 	__try
 	{
-		InitModArguments.bCreateMassageLoop = TRUE;
-		if (!InitMod(&InitModArguments))
+		if (!InitMod(NULL))
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "InitMod failed");
 			bRet = FALSE;
