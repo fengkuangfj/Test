@@ -20,6 +20,7 @@
 #include "..\\..\\Public\\SimpleDump\\SimpleDump.h"
 #include "..\\..\\Public\\StackBacktrace\\StackBacktrace.h"
 #include "..\\..\\Public\\StorageDevice\\StorageDevice.h"
+#include "..\\..\\Public\ProcessType\\ProcessType.h"
 #include "..\\..\\Public\\SimpleLog\\SimpleLog.h"
 #include "..\\..\\Public\\Uac\\Uac.h"
 #include "..\\..\\Public\\Service\\Service.h"

@@ -8,48 +8,45 @@ BOOL
 	__in_opt LPINIT_MOD_ARGUMENTS lpInitModArguments
 	)
 {
-	BOOL							bRet						= FALSE;
+	BOOL				bRet					= FALSE;
 
-	TCHAR							tchPdbDir[MAX_PATH]			= {0};
-	LPTSTR							lpPosition					= NULL;
-	VOLUME_DETECTOR_INIT_ARGUMENTS	VolumeDetectorInitArguments = {0};
+	CRUSH_HANDLER_INFO	CrushHandlerInfo;
+	TCHAR				tchLogPath[MAX_PATH]	= {0};
+	LPTSTR				lpPosition				= NULL;
 
-	CPrintfEx						PrintfEx;
-	CVolumeDetector					VolumeDetector;
+	CPrintfEx			PrintfEx;
+	CSimpleLog			SimpleLog;
+	CSimpleDump			SimpleDump;
 
-	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "begin");
 
 	__try
 	{
+		ZeroMemory(&CrushHandlerInfo, sizeof(CrushHandlerInfo));
+
 		if (!PrintfEx.Init())
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
 
-		if (GetModuleFileName(NULL, tchPdbDir, _countof(tchPdbDir)))
+		CrushHandlerInfo.EhType = EH_TYPE_S;
+		CrushHandlerInfo.bFirstHandler = TRUE;
+		CrushHandlerInfo.MiniDumpType = MiniDumpWithFullMemory;
+
+		SimpleDump.RegisterCrushHandler(&CrushHandlerInfo);
+
+		if (GetModuleFileName(NULL, tchLogPath, _countof(tchLogPath)))
 		{
-			lpPosition = _tcsrchr(tchPdbDir, _T('\\'));
+			lpPosition = _tcsrchr(tchLogPath, _T('.'));
 			if (lpPosition)
 			{
-				*(lpPosition) = _T('\0');
-				// 
+				*(lpPosition + 1) = _T('\0');
+				_tcscat_s(tchLogPath, _countof(tchLogPath), _T("log"));
+
+				if (!SimpleLog.Init(tchLogPath))
+					printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "SimpleLog.Init failed");
 			}
 		}
 
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续");
+		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键继续");
 		_getch();
-
-		if (lpInitModArguments)
-		{
-			_tcscat_s(VolumeDetectorInitArguments.tchModuleName, _countof(VolumeDetectorInitArguments.tchModuleName), lpInitModArguments->tchModuleName);
-			VolumeDetectorInitArguments.hWindow = lpInitModArguments->hWindow;
-			VolumeDetectorInitArguments.lpfnWndProc = lpInitModArguments->lpfnWndProc;
-			VolumeDetectorInitArguments.bCreateMassageLoop = lpInitModArguments->bCreateMassageLoop;
-		}
-
-		if (!VolumeDetector.Init(&VolumeDetectorInitArguments))
-		{
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Init failed");
-			__leave;
-		}
 
 		bRet = TRUE;
 	}
@@ -58,27 +55,17 @@ BOOL
 		;
 	}
 
-	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "end");
-
 	return bRet;
 }
 
 BOOL
 	UnloadMod()
 {
-	BOOL			bRet			= TRUE;
-
-	CVolumeDetector	VolumeDetector;
+	BOOL bRet = TRUE;
 
 
 	__try
 	{
-		if (!VolumeDetector.Unload())
-		{
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "VolumeDetector.Unload failed");
-			bRet = FALSE;
-		}
-
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键退出");
 		_getch();
 	}
@@ -126,15 +113,16 @@ BOOL
 int _tmain(int argc, _TCHAR* argv[])
 {
 	// 服务
-	CService			Service;
-
-	INIT_MOD_ARGUMENTS	InitModArguments = {0};
+	CPrintfEx	PrintfEx;
+	CService	Service;
 
 
 	__try
 	{
-		InitModArguments.bCreateMassageLoop = TRUE;
-		if (!Service.Register(_T("test"), InitMod, &InitModArguments, UnloadMod))
+		if (!PrintfEx.Init())
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
+
+		if (!Service.Register(_T("test"), InitMod, NULL, UnloadMod))
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "Service.Register failed");
 			__leave;
