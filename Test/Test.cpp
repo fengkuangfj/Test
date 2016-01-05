@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "Test.h"
 
 BOOL
 	InitMod(
@@ -14,23 +15,22 @@ BOOL
 	TCHAR				tchLogPath[MAX_PATH]	= {0};
 	LPTSTR				lpPosition				= NULL;
 
-	CPrintfEx			PrintfEx;
-	CSimpleLog			SimpleLog;
-	CSimpleDump			SimpleDump;
-
 
 	__try
 	{
 		ZeroMemory(&CrushHandlerInfo, sizeof(CrushHandlerInfo));
 
-		if (!PrintfEx.Init())
+		if (!CPrintfEx::GetInstance()->Init())
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
+
+		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键继续");
+		_getch();
 
 		CrushHandlerInfo.EhType = EH_TYPE_S;
 		CrushHandlerInfo.bFirstHandler = TRUE;
 		CrushHandlerInfo.MiniDumpType = MiniDumpWithFullMemory;
 
-		SimpleDump.RegisterCrushHandler(&CrushHandlerInfo);
+		CSimpleDump::GetInstance()->RegisterCrushHandler(&CrushHandlerInfo);
 
 		if (GetModuleFileName(NULL, tchLogPath, _countof(tchLogPath)))
 		{
@@ -40,13 +40,10 @@ BOOL
 				*(lpPosition + 1) = _T('\0');
 				_tcscat_s(tchLogPath, _countof(tchLogPath), _T("log"));
 
-				if (!SimpleLog.Init(tchLogPath))
+				if (!CSimpleLog::GetInstance()->Init(tchLogPath))
 					printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "SimpleLog.Init failed");
 			}
 		}
-
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键继续");
-		_getch();
 
 		bRet = TRUE;
 	}
@@ -66,7 +63,13 @@ BOOL
 
 	__try
 	{
+		CSimpleLog::GetInstance()->Unload();
+		CSimpleLog::ReleaseInstance();
+
+		CSimpleDump::ReleaseInstance();
+
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键退出");
+		CPrintfEx::ReleaseInstance();
 		_getch();
 	}
 	__finally
@@ -109,6 +112,7 @@ BOOL
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	/*
 	// 服务
 	CPrintfEx	PrintfEx;
 	CService	Service;
@@ -131,12 +135,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
+	*/
 
-	/*
 	// 非服务
 	Test();
 	return 0;
-	*/
 
 	/*
 	// 模板
