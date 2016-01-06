@@ -20,9 +20,6 @@ BOOL
 	{
 		ZeroMemory(&CrushHandlerInfo, sizeof(CrushHandlerInfo));
 
-		if (!CPrintfEx::GetInstance()->Init())
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
-
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键继续");
 		_getch();
 
@@ -40,7 +37,7 @@ BOOL
 				*(lpPosition + 1) = _T('\0');
 				_tcscat_s(tchLogPath, _countof(tchLogPath), _T("log"));
 
-				if (!CSimpleLog::GetInstance()->Init(tchLogPath))
+				if (!CSimpleLog::GetInstance()->SetArguments(tchLogPath))
 					printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "SimpleLog.Init failed");
 			}
 		}
@@ -63,15 +60,10 @@ BOOL
 
 	__try
 	{
-		if (!CSimpleLog::GetInstance()->Unload())
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "Unload failed");
-
 		CSimpleLog::ReleaseInstance();
-
 		CSimpleDump::ReleaseInstance();
 
 		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键退出");
-		CPrintfEx::ReleaseInstance();
 		_getch();
 	}
 	__finally
@@ -106,7 +98,7 @@ BOOL
 	}
 	__finally
 	{
-		;
+		CPrintfEx::ReleaseInstance();
 	}
 
 	return bRet;
@@ -114,18 +106,10 @@ BOOL
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	/*
 	// 服务
-	CPrintfEx	PrintfEx;
-	CService	Service;
-
-
 	__try
 	{
-		if (!PrintfEx.Init())
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
-
-		if (!Service.Register(_T("test"), InitMod, NULL, UnloadMod))
+		if (!CService::GetInstance()->Register(_T("test"), InitMod, NULL, UnloadMod))
 		{
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "Service.Register failed");
 			__leave;
@@ -133,15 +117,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	__finally
 	{
-		;
+		CService::ReleaseInstance();
 	}
 
 	return 0;
-	*/
 
+	/*
 	// 非服务
 	Test();
 	return 0;
+	*/
 
 	/*
 	// 模板
