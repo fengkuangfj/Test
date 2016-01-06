@@ -63,7 +63,9 @@ BOOL
 
 	__try
 	{
-		CSimpleLog::GetInstance()->Unload();
+		if (!CSimpleLog::GetInstance()->Unload())
+			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "Unload failed");
+
 		CSimpleLog::ReleaseInstance();
 
 		CSimpleDump::ReleaseInstance();
