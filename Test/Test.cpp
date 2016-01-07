@@ -37,7 +37,7 @@ BOOL
 				*(lpPosition + 1) = _T('\0');
 				_tcscat_s(tchLogPath, _countof(tchLogPath), _T("log"));
 
-				if (!CSimpleLog::GetInstance()->SetArguments(tchLogPath))
+				if (!CSimpleLog::GetInstance(tchLogPath))
 					printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "SimpleLog.Init failed");
 			}
 		}
@@ -106,6 +106,7 @@ BOOL
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	/*
 	// 服务
 	__try
 	{
@@ -121,12 +122,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
+	*/
 
-	/*
 	// 非服务
 	Test();
 	return 0;
-	*/
 
 	/*
 	// 模板
