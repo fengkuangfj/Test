@@ -24,9 +24,6 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Public\ProcessPath\ProcessPath.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Public\ModulePath\ModulePath.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -57,9 +54,6 @@
     <ClInclude Include="..\..\Public\Service\Service.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Public\ProcessPrivilege\ProcessPrivilege.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Public\CrashDump\CrashDump.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -78,7 +72,10 @@
     <ClInclude Include="..\..\Public\StorageDevice\StorageDevice.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Public\ProcessType\ProcessType.h">
+    <ClInclude Include="..\..\Public\ProcessControl\ProcessControl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\Public.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -87,9 +84,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Test.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Public\ProcessPath\ProcessPath.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Public\ModulePath\ModulePath.cpp">
@@ -122,9 +116,6 @@
     <ClCompile Include="..\..\Public\Service\Service.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Public\ProcessPrivilege\ProcessPrivilege.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Public\CrashDump\CrashDump.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -140,7 +131,10 @@
     <ClCompile Include="..\..\Public\StorageDevice\StorageDevice.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Public\ProcessType\ProcessType.cpp">
+    <ClCompile Include="..\..\Public\ProcessControl\ProcessControl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\Public.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
