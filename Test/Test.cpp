@@ -20,9 +20,6 @@ BOOL
 	{
 		ZeroMemory(&CrushHandlerInfo, sizeof(CrushHandlerInfo));
 
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键继续");
-		_getch();
-
 		CrushHandlerInfo.EhType = EH_TYPE_S;
 		CrushHandlerInfo.bFirstHandler = TRUE;
 		CrushHandlerInfo.MiniDumpType = MiniDumpWithFullMemory;
@@ -62,9 +59,6 @@ BOOL
 	{
 		CSimpleLog::ReleaseInstance();
 		CSimpleDump::ReleaseInstance();
-
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键退出");
-		_getch();
 	}
 	__finally
 	{
@@ -87,8 +81,6 @@ BOOL
 			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "InitMod failed");
 			bRet = FALSE;
 		}
-
-		_getch();
 
 		if (!UnloadMod())
 		{
@@ -120,56 +112,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		CService::ReleaseInstance();
 	}
-
-	return 0;
 	*/
 
 	// 非服务
 	Test();
-	return 0;
-
-	/*
-	// 模板
-	TCHAR			tchPdbDir[MAX_PATH] = {0};
-	LPTSTR			lpPosition			= NULL;
-
-	CPrintfEx		PrintfEx;
-
-	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "begin");
-
-	__try
-	{
-		if (GetModuleFileName(NULL, tchPdbDir, _countof(tchPdbDir)))
-		{
-			lpPosition = _tcsrchr(tchPdbDir, _T('\\'));
-			if (lpPosition)
-			{
-				*(lpPosition) = _T('\0');
-
-				if (!PrintfEx.Init(tchPdbDir, TRUE))
-					printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Init failed");
-			}
-		}
-
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "日志模块初始化完毕，按任意键继续");
-		_getch();
-
-
-
-
-
-
-	}
-	__finally
-	{
-		printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "按任意键退出");
-		_getch();
-		if (!PrintfEx.Unload())
-			printfEx(MOD_MAIN, PRINTF_LEVEL_ERROR, "PrintfEx.Unload failed");
-	}
-
-	printfEx(MOD_MAIN, PRINTF_LEVEL_INFORMATION, "end");
 
 	return 0;
-	*/
 }
