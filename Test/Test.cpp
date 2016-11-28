@@ -21,7 +21,6 @@ BOOL
 		ZeroMemory(&CrushHandlerInfo, sizeof(CrushHandlerInfo));
 
 		CrushHandlerInfo.EhType = EH_TYPE_S;
-		CrushHandlerInfo.bFirstHandler = TRUE;
 		CrushHandlerInfo.MiniDumpType = MiniDumpWithFullMemory;
 
 		CSimpleDump::GetInstance()->RegisterCrushHandler(&CrushHandlerInfo);
