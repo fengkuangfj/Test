@@ -78,6 +78,21 @@
     <ClInclude Include="..\..\Public\Public.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Public\FileSignature\FileSignature.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\FileVersion\FileVersion.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\RegOperation\RegOperation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\FileOperation\FileOperation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\Wow64DisableWow64FsRedirection\Wow64DisableWow64FsRedirection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -135,6 +150,21 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Public\Public.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\FileSignature\FileSignature.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\FileVersion\FileVersion.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\RegOperation\RegOperation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\FileOperation\FileOperation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\Wow64DisableWow64FsRedirection\Wow64DisableWow64FsRedirection.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
